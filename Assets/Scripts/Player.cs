@@ -27,6 +27,7 @@ public class Player: MonoBehaviour
 	public float dashSpeed;
 	public float dashDuration;
 	public float dashCooldown;
+	public float dashInvulnerability;
 	[HideInInspector]
 	public float dashDowntime;
 	[HideInInspector]
@@ -43,6 +44,7 @@ public class Player: MonoBehaviour
 	{
 		if (Input.GetKeyUp(KeyCode.LeftShift) && canDash)
 		{
+			EndDash();
 			dashDowntime = dashLeft;
 			dashLeft = 0;
 			canDash = false;
@@ -54,13 +56,14 @@ public class Player: MonoBehaviour
 		speed = baseSpeed;
 		if (Input.GetKey(KeyCode.LeftShift) && canDash)
 		{
-			speed = dashSpeed;
+			Dash();
 
 			dashLeft -= Time.deltaTime;
 			dashBar.transform.GetComponent<Image>().color = dashBar.drain;
 			dashDowntime = dashLeft / dashDuration * dashCooldown;
 			if (dashLeft <= 0)
 			{
+				EndDash();
 				dashLeft = 0;
 				dashDowntime = 0;
 				canDash = false;
@@ -83,6 +86,26 @@ public class Player: MonoBehaviour
 
 		float dx = Input.GetAxisRaw("Horizontal") * speed;
 		rb.AddForce(new Vector2(dx, 0), ForceMode2D.Impulse);
+	}
+
+	public void Dash()
+	{
+		speed = dashSpeed;
+
+		rb.simulated = false;
+	}
+
+	public void EndDash()
+	{
+		rb.simulated = true;
+		StartCoroutine(DashInvulnerability());
+	}
+
+	IEnumerator DashInvulnerability()
+	{
+		GetComponent<Collider2D>().enabled = false;
+		yield return new WaitForSeconds(dashInvulnerability);
+		GetComponent<Collider2D>().enabled = true;
 	}
 
 	public void UpdateDashBar()
