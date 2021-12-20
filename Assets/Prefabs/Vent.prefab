@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac32699f39ca4db42987830ae7baffdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 8123316846890164859}
   closePower: 50
   farPower: 40
 --- !u!61 &8123316846890164859
@@ -168,7 +167,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.57795113, g: 1, b: 0.5235849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

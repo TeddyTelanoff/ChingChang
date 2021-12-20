@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider : MonoBehaviour
+public class Spider: MonoBehaviour
 {
 	[Header("Refs")]
 	public Rigidbody2D rb;
