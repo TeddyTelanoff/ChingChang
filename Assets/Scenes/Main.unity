@@ -635,4 +635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2044890162}
-  speed: 1
+  baseSpeed: 1
+  dashSpeed: 3
+  speed: 0
