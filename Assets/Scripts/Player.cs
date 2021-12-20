@@ -113,6 +113,6 @@ public class Player: MonoBehaviour
 	public void UpdateDashBar()
 	{
 		float completeness = dashDowntime / dashCooldown;
-		dashBar.transform.localScale = new Vector3(completeness, transform.localScale.y, transform.localScale.z);
+		dashBar.transform.localScale = new Vector3(completeness, dashBar.transform.localScale.y, dashBar.transform.localScale.z);
 	}
 }
