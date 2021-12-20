@@ -22,7 +22,7 @@ public class Spider : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D hit)
 	{
 		if (hit.collider.tag == "Player")
-			hit.rigidbody.AddForce(new Vector2(0, -hmmph), ForceMode2D.Impulse);
+			hit.rigidbody.AddForce(new Vector2(0, hmmph), ForceMode2D.Impulse);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
