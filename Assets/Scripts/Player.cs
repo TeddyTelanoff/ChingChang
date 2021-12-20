@@ -12,10 +12,10 @@ public class Player: MonoBehaviour
 
 	void FixedUpdate()
 	{
-		float speed = baseSpeed;
+		speed = baseSpeed;
 		if (Input.GetKey(KeyCode.LeftShift))
-			spd = dashSpeed;
-		float dx = Input.GetAxisRaw("Horizontal") * spd;
+			speed = dashSpeed;
+		float dx = Input.GetAxisRaw("Horizontal") * speed;
 		rb.AddForce(new Vector2(dx, 0), ForceMode2D.Impulse);
 	}
 }
