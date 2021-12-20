@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265576839}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -868,7 +868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006256910
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,10 +1062,10 @@ MonoBehaviour:
     charge: {r: 0.9803065, g: 1, b: 0.495283, a: 1}
     full: {r: 0.1273585, g: 1, b: 0.6851156, a: 1}
     drain: {r: 0.3537736, g: 0.7876422, b: 1, a: 1}
-  dashSpeed: 3
+  dashSpeed: 2
   dashDuration: 0.5
   dashCooldown: 2
-  dashInvulnerability: 1
+  dashInvulnerability: 0.3
   dashDowntime: 0
   dashLeft: 0
   canDash: 0

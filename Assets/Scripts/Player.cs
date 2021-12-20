@@ -103,9 +103,11 @@ public class Player: MonoBehaviour
 
 	IEnumerator DashInvulnerability()
 	{
+		rb.gravityScale = 0;
 		GetComponent<Collider2D>().enabled = false;
 		yield return new WaitForSeconds(dashInvulnerability);
 		GetComponent<Collider2D>().enabled = true;
+		rb.gravityScale = 1;
 	}
 
 	public void UpdateDashBar()
