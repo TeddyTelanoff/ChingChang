@@ -1,19 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player: MonoBehaviour
 {
-	[Header("Refs")]
+	[Header("Misc")]
 	public Rigidbody2D rb;
-
-	[Header("Base")]
 	public float baseSpeed;
 	[HideInInspector]
 	public float speed;
 
 	[Header("Dash")]
+	public DashBar dashBar;
+	[Serializable]
+	public struct DashBar
+	{
+		public Transform transform;
+		public Color charge;
+		public Color full;
+		public Color drain;
+	}
+
 	public float dashSpeed;
 	public float dashDuration;
 	public float dashCooldown;
@@ -23,6 +33,11 @@ public class Player: MonoBehaviour
 	public float dashLeft;
 	[HideInInspector]
 	public bool canDash;
+
+	void Awake()
+	{
+		dashDowntime = dashCooldown;
+	}
 
 	void Update()
 	{
@@ -42,6 +57,8 @@ public class Player: MonoBehaviour
 			speed = dashSpeed;
 
 			dashLeft -= Time.deltaTime;
+			dashBar.transform.GetComponent<Image>().color = dashBar.drain;
+			dashDowntime = dashLeft / dashDuration * dashCooldown;
 			if (dashLeft <= 0)
 			{
 				dashLeft = 0;
@@ -52,15 +69,25 @@ public class Player: MonoBehaviour
 		else
 		{
 			dashDowntime += Time.deltaTime;
+			dashBar.transform.GetComponent<Image>().color = dashBar.charge;
 			if (dashDowntime >= dashCooldown)
 			{
+				dashBar.transform.GetComponent<Image>().color = dashBar.full;
 				dashDowntime = dashCooldown;
 				dashLeft = dashDuration;
 				canDash = true;
 			}
 		}
 
+		UpdateDashBar();
+
 		float dx = Input.GetAxisRaw("Horizontal") * speed;
 		rb.AddForce(new Vector2(dx, 0), ForceMode2D.Impulse);
+	}
+
+	public void UpdateDashBar()
+	{
+		float completeness = dashDowntime / dashCooldown;
+		dashBar.transform.localScale = new Vector3(completeness, transform.localScale.y, transform.localScale.z);
 	}
 }
