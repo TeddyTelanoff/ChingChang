@@ -10,6 +10,7 @@ public class Player: MonoBehaviour
 	[Header("Misc")]
 	public Rigidbody2D rb;
 	public float baseSpeed;
+	public float fallScale;
 	[HideInInspector]
 	public float speed;
 
@@ -28,6 +29,7 @@ public class Player: MonoBehaviour
 	public float dashDuration;
 	public float dashCooldown;
 	public float dashInvulnerability;
+	public bool invulnerable;
 	[HideInInspector]
 	public float dashDowntime;
 	[HideInInspector]
@@ -49,6 +51,14 @@ public class Player: MonoBehaviour
 			dashLeft = 0;
 			canDash = false;
 		}
+
+		//if (invulnerable)
+		//	return;
+
+		//if (Input.GetKeyDown(KeyCode.DownArrow))
+		//	rb.gravityScale = fallScale;
+		//else if (Input.GetKeyUp(KeyCode.DownArrow))
+		//	rb.gravityScale = 1;
 	}
 
 	void FixedUpdate()
@@ -84,6 +94,9 @@ public class Player: MonoBehaviour
 
 		UpdateDashBar();
 
+		if (!invulnerable && Input.GetKey(KeyCode.DownArrow))
+			rb.AddForce(new Vector2(0, -fallScale), ForceMode2D.Impulse);
+
 		float dx = Input.GetAxisRaw("Horizontal") * speed;
 		rb.AddForce(new Vector2(dx, 0), ForceMode2D.Impulse);
 	}
@@ -104,9 +117,11 @@ public class Player: MonoBehaviour
 	IEnumerator DashInvulnerability()
 	{
 		rb.gravityScale = 0;
+		invulnerable = true;
 		GetComponent<Collider2D>().enabled = false;
 		yield return new WaitForSeconds(dashInvulnerability);
 		GetComponent<Collider2D>().enabled = true;
+		invulnerable = false;
 		rb.gravityScale = 1;
 	}
 
