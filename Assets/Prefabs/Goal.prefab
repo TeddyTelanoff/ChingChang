@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 253279484905809478}
   - component: {fileID: 6943137828901974852}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4449437375157226279}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.15402064, w: 0.9880676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 8052689453042108828}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.72}
 --- !u!212 &6943137828901974852
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8052689453042108826}
   - component: {fileID: 2200961842778126208}
   - component: {fileID: 1947978488772648687}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,9 +174,9 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.26, y: -0.05}
-  m_Size: {x: 3, y: 4}
+  m_Offset: {x: -0.20444787, y: -0.15416002}
+  m_Size: {x: 1.7223032, y: 3.1806073}
   m_Direction: 0

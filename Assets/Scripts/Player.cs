@@ -17,6 +17,8 @@ public class Player: MonoBehaviour
 	public Quaternion startRot;
 	[HideInInspector]
 	public float speed;
+	[HideInInspector]
+	public Star star;
 
 	[Header("Dash")]
 	public DashBar dashBar;
@@ -117,11 +119,16 @@ public class Player: MonoBehaviour
 
 	public void Restart()
 	{
+		dashDowntime = dashCooldown;
 		transform.localPosition = startPos;
 		transform.localRotation = startRot;
 		transform.localScale = startScale;
 		rb.velocity = Vector2.zero;
 		rb.angularVelocity = 0;
+		if (star)
+			star.gameObject.SetActive(true);
+
+		Time.timeScale = 1;
 	}
 
 	public void Dash()

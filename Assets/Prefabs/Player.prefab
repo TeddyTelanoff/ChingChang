@@ -152,6 +152,7 @@ MonoBehaviour:
   startScale: {x: 0, y: 0, z: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
   speed: 0
+  star: {fileID: 0}
   dashBar:
     transform: {fileID: 0}
     charge: {r: 0.9803065, g: 1, b: 0.495283, a: 1}
@@ -159,7 +160,7 @@ MonoBehaviour:
     drain: {r: 0.3537736, g: 0.7876422, b: 1, a: 1}
   dashSpeed: 3
   dashDuration: 0.5
-  dashCooldown: 2
+  dashCooldown: 1
   dashInvulnerability: 0.3
   invulnerable: 0
   dashDowntime: 0

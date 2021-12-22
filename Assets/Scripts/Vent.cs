@@ -14,7 +14,7 @@ public class Vent: MonoBehaviour
 		other.GetComponent<Rigidbody2D>().AddForce(new Vector2(-Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad), Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * Mathf.Lerp(closePower, farPower, Mathf.Abs(other.transform.position.y - transform.position.y) / (GetComponent<BoxCollider2D>().size.y / 2)) * Time.deltaTime, ForceMode2D.Impulse);
 	}
 
-	void OnDrawGizmos()
+	void OnDrawGizmosSelected()
 	{
 		Gizmos.DrawLine(transform.position, transform.position + new Vector3(-Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad), Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * 5);
 	}
