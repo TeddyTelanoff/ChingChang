@@ -27,8 +27,12 @@ public class Spider: MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.isTrigger)
-			return;
+		if (other.tag == "Player")
+		{
+			Time.timeScale = 0;
+			print("game ovr");
+		}
+
 		speed = -speed;
 	}
 }

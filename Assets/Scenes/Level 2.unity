@@ -265,6 +265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1891287390333551797, guid: 5f26f72e58c2bb24eb9080ec615e14ae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6920385480229686551, guid: 5f26f72e58c2bb24eb9080ec615e14ae, type: 3}
       propertyPath: m_Name
       value: Spider
@@ -275,15 +279,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6920385480229686553, guid: 5f26f72e58c2bb24eb9080ec615e14ae, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8.77625
+      value: 6.435
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920385480229686553, guid: 5f26f72e58c2bb24eb9080ec615e14ae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.4499998
       objectReference: {fileID: 0}
     - target: {fileID: 6920385480229686553, guid: 5f26f72e58c2bb24eb9080ec615e14ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000023842
+      value: 0.0135
       objectReference: {fileID: 0}
     - target: {fileID: 6920385480229686553, guid: 5f26f72e58c2bb24eb9080ec615e14ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.2
+      value: 9.95
       objectReference: {fileID: 0}
     - target: {fileID: 6920385480229686553, guid: 5f26f72e58c2bb24eb9080ec615e14ae, type: 3}
       propertyPath: m_LocalPosition.z

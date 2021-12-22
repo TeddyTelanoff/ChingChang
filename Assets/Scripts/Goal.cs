@@ -8,6 +8,7 @@ public class Goal: MonoBehaviour
 	{
 		if (hit.collider.tag == "Player")
 		{
+			hit.collider.GetComponent<Player>().timer?.End();
 			Time.timeScale = 0;
 			print("level completed");
 		}

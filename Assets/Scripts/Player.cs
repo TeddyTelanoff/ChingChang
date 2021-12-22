@@ -9,6 +9,7 @@ public class Player: MonoBehaviour
 {
 	[Header("Misc")]
 	public Rigidbody2D rb;
+	public SpeedrunTimer timer;
 	public float baseSpeed;
 	public float fallScale;
 	[HideInInspector]
@@ -17,6 +18,8 @@ public class Player: MonoBehaviour
 	public Quaternion startRot;
 	[HideInInspector]
 	public float speed;
+	[HideInInspector]
+	public float defGravScale;
 	[HideInInspector]
 	public Star star;
 
@@ -46,6 +49,7 @@ public class Player: MonoBehaviour
 	void Awake()
 	{
 		dashDowntime = dashCooldown;
+		defGravScale = rb.gravityScale;
 	}
 
 	void Start()
@@ -53,6 +57,7 @@ public class Player: MonoBehaviour
 		startPos = transform.localPosition;
 		startRot = transform.localRotation;
 		startScale = transform.localScale;
+		timer?.Restart();
 	}
 
 	void Update()
@@ -125,9 +130,9 @@ public class Player: MonoBehaviour
 		transform.localScale = startScale;
 		rb.velocity = Vector2.zero;
 		rb.angularVelocity = 0;
-		if (star)
-			star.gameObject.SetActive(true);
+		star?.gameObject.SetActive(true);
 
+		timer?.Restart();
 		Time.timeScale = 1;
 	}
 
@@ -152,7 +157,7 @@ public class Player: MonoBehaviour
 		yield return new WaitForSeconds(dashInvulnerability);
 		GetComponent<Collider2D>().enabled = true;
 		invulnerable = false;
-		rb.gravityScale = 1;
+		rb.gravityScale = defGravScale;
 	}
 
 	public void UpdateDashBar()
