@@ -12,6 +12,10 @@ public class Player: MonoBehaviour
 	public float baseSpeed;
 	public float fallScale;
 	[HideInInspector]
+	public Vector3 startPos, startScale;
+	[HideInInspector]
+	public Quaternion startRot;
+	[HideInInspector]
 	public float speed;
 
 	[Header("Dash")]
@@ -42,6 +46,13 @@ public class Player: MonoBehaviour
 		dashDowntime = dashCooldown;
 	}
 
+	void Start()
+	{
+		startPos = transform.localPosition;
+		startRot = transform.localRotation;
+		startScale = transform.localScale;
+	}
+
 	void Update()
 	{
 		if (Input.GetKeyUp(KeyCode.LeftShift) && canDash)
@@ -51,6 +62,9 @@ public class Player: MonoBehaviour
 			dashLeft = 0;
 			canDash = false;
 		}
+
+		if (Input.GetKey(KeyCode.R))
+			Restart();
 
 		//if (invulnerable)
 		//	return;
@@ -99,6 +113,15 @@ public class Player: MonoBehaviour
 
 		float dx = Input.GetAxisRaw("Horizontal") * speed;
 		rb.AddForce(new Vector2(dx, 0), ForceMode2D.Impulse);
+	}
+
+	public void Restart()
+	{
+		transform.localPosition = startPos;
+		transform.localRotation = startRot;
+		transform.localScale = startScale;
+		rb.velocity = Vector2.zero;
+		rb.angularVelocity = 0;
 	}
 
 	public void Dash()

@@ -16,7 +16,7 @@ public class Spider: MonoBehaviour
 
 	void FixedUpdate()
 	{
-		rb.velocity = new Vector2(speed * Time.deltaTime, 0);
+		rb.velocity = new Vector2(speed * Time.deltaTime, rb.velocity.y);
 	}
 
 	void OnCollisionEnter2D(Collision2D hit)
@@ -27,6 +27,8 @@ public class Spider: MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
+		if (other.isTrigger)
+			return;
 		speed = -speed;
 	}
 }
