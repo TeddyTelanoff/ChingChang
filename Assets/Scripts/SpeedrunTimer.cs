@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpeedrunTimer: MonoBehaviour
 {
@@ -37,7 +38,17 @@ public class SpeedrunTimer: MonoBehaviour
 	public void End()
 	{
 		end = Time.time;
-ended = true;
+		ended = true;
 		ui.color = Color.white;
+
+		PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + ".latest-time", timeElapsed);
+		PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + ".best-time", Mathf.Max(timeElapsed, PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + ".best-time")));
+	}
+
+	public void EndBad()
+	{
+		end = Time.time;
+		ended = true;
+		ui.color = Color.red;
 	}
 }

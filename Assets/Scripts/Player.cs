@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player: MonoBehaviour
@@ -54,6 +55,8 @@ public class Player: MonoBehaviour
 
 	void Start()
 	{
+		if (!dashBar.transform)
+			canDash = false;
 		startPos = transform.localPosition;
 		startRot = transform.localRotation;
 		startScale = transform.localScale;
@@ -71,7 +74,12 @@ public class Player: MonoBehaviour
 		}
 
 		if (Input.GetKey(KeyCode.R))
-			Restart();
+		{
+			if (Input.GetKey(KeyCode.Tab))
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			else
+				Restart();
+		}
 
 		//if (invulnerable)
 		//	return;
@@ -100,7 +108,7 @@ public class Player: MonoBehaviour
 				canDash = false;
 			}
 		}
-		else
+		else if (dashBar.transform)
 		{
 			dashDowntime += Time.deltaTime;
 			dashBar.transform.GetComponent<Image>().color = dashBar.charge;
@@ -113,6 +121,7 @@ public class Player: MonoBehaviour
 			}
 		}
 
+		if (dashBar.transform)
 		UpdateDashBar();
 
 		if (Input.GetKey(KeyCode.DownArrow))
@@ -120,6 +129,33 @@ public class Player: MonoBehaviour
 
 		float dx = Input.GetAxisRaw("Horizontal") * speed;
 		rb.AddForce(new Vector2(dx, 0), ForceMode2D.Impulse);
+	}
+
+	public void Win()
+	{
+		Time.timeScale = 0;
+		timer?.End();
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+	}
+
+	public void Lose()
+	{
+		Time.timeScale = 0;
+		timer?.EndBad();
+		StartCoroutine(Routine());
+
+		IEnumerator Routine()
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				transform.localScale *= 1.1f;
+				var eulerAngs = transform.localRotation.eulerAngles;
+				transform.localRotation = Quaternion.Euler(eulerAngs.x, eulerAngs.y, eulerAngs.z + 6.9f);
+				GetComponentInChildren<SpriteRenderer>().color -= new Color(0, 0.04f, 0.04f, 0);
+				yield return new WaitForSecondsRealtime(0.05f);
+			}
+			Restart();
+		}
 	}
 
 	public void Restart()
@@ -133,6 +169,7 @@ public class Player: MonoBehaviour
 		star?.gameObject.SetActive(true);
 
 		timer?.Restart();
+		GetComponentInChildren<SpriteRenderer>().color = Color.white;
 		Time.timeScale = 1;
 	}
 
@@ -147,20 +184,20 @@ public class Player: MonoBehaviour
 	{
 		rb.simulated = true;
 		StartCoroutine(DashInvulnerability());
-	}
 
-	IEnumerator DashInvulnerability()
-	{
-		if (invulnerable)
-			yield break;
+		IEnumerator DashInvulnerability()
+		{
+			if (invulnerable)
+				yield break;
 
-		rb.gravityScale = 0;
-		invulnerable = true;
-		GetComponent<Collider2D>().enabled = false;
-		yield return new WaitForSeconds(dashInvulnerability);
-		GetComponent<Collider2D>().enabled = true;
-		invulnerable = false;
-		rb.gravityScale = defGravScale;
+			rb.gravityScale = 0;
+			invulnerable = true;
+			GetComponent<Collider2D>().enabled = false;
+			yield return new WaitForSeconds(dashInvulnerability);
+			GetComponent<Collider2D>().enabled = true;
+			invulnerable = false;
+			rb.gravityScale = defGravScale;
+		}
 	}
 
 	public void UpdateDashBar()

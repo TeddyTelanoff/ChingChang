@@ -7,9 +7,6 @@ public class Lava: MonoBehaviour
 	void OnCollisionEnter2D(Collision2D hit)
 	{
 		if (hit.collider.tag == "Player")
-		{
-			Time.timeScale = 0;
-			print("game ovr");
-		}
+			hit.collider.GetComponent<Player>().Lose();
 	}
 }

@@ -29,8 +29,8 @@ public class Spider: MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			Time.timeScale = 0;
-			print("game ovr");
+			other.GetComponent<Player>().Lose();
+			return;
 		}
 
 		speed = -speed;
