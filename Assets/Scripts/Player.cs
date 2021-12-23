@@ -77,13 +77,13 @@ public class Player: MonoBehaviour
 		if (Input.GetKey(KeyCode.R))
 		{
 			if (Input.GetKey(KeyCode.Tab))
-				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+				SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 			else
 				Restart();
 		}
 
 		if (Input.GetKey(KeyCode.Escape))
-			SceneManager.LoadScene(0);
+			SceneManager.LoadSceneAsync(0);
 
 		//if (invulnerable)
 		//	return;
@@ -126,7 +126,7 @@ public class Player: MonoBehaviour
 		}
 
 		if (dashBar.transform)
-		UpdateDashBar();
+			UpdateDashBar();
 
 		if (Input.GetKey(KeyCode.DownArrow))
 			rb.AddForce(new Vector2(0, -fallScale), ForceMode2D.Impulse);
@@ -139,7 +139,8 @@ public class Player: MonoBehaviour
 	{
 		Time.timeScale = 0;
 		timer?.End();
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		PlayerPrefs.SetInt(SceneManager.GetActiveScene().buildIndex + ".star", star ? 1 : 0);
+		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1).completed += (_) => Time.timeScale = 1;;
 	}
 
 	public void Lose()

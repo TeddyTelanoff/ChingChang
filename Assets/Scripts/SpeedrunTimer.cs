@@ -41,8 +41,8 @@ public class SpeedrunTimer: MonoBehaviour
 		ended = true;
 		ui.color = Color.white;
 
-		PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + ".latest-time", timeElapsed);
-		PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + ".best-time", Mathf.Max(timeElapsed, PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + ".best-time")));
+		PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex + ".latest-time", timeElapsed);
+		PlayerPrefs.SetFloat(SceneManager.GetActiveScene().buildIndex + ".best-time", Mathf.Max(timeElapsed, PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + ".best-time")));
 	}
 
 	public void EndBad()
