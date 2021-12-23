@@ -49,6 +49,7 @@ public class Player: MonoBehaviour
 
 	void Awake()
 	{
+		PlayerPrefs.SetInt("last-lvl", SceneManager.GetActiveScene().buildIndex);
 		dashDowntime = dashCooldown;
 		defGravScale = rb.gravityScale;
 	}
@@ -80,6 +81,9 @@ public class Player: MonoBehaviour
 			else
 				Restart();
 		}
+
+		if (Input.GetKey(KeyCode.Escape))
+			SceneManager.LoadScene(0);
 
 		//if (invulnerable)
 		//	return;
