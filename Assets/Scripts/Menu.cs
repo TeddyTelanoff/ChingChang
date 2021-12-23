@@ -7,6 +7,7 @@ public class Menu: MonoBehaviour
 {
 	public GameObject mainMenu;
 	public GameObject levelMenu;
+	public GamrMusik gamrMusik;
 
 	public void Playz()
 	{
@@ -26,6 +27,7 @@ public class Menu: MonoBehaviour
 
 	public void Back2Menu()
 	{
+		print("test");
 		levelMenu.SetActive(false);
 		mainMenu.SetActive(true);
 	}
