@@ -14,7 +14,7 @@ public class LevelTime: MonoBehaviour
 		float time = PlayerPrefs.GetFloat(level + ".best-time", float.NaN);
 		int star = PlayerPrefs.GetInt(level + ".star");
 		GetComponent<TMP_Text>().text = time.ToString("f2");
-		if (star == 1 || (level < 5 && time != float.NaN))
+		if (star == 1 || (level < 5 && !float.IsNaN(time)))
 			rainbow = true;
 	}
 

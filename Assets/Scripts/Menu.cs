@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menu: MonoBehaviour
 {
 	public GameObject mainMenu;
 	public GameObject levelMenu;
+	public Button resetButton;
 	public GamrMusik gamrMusik;
+
+	public bool allowReset { get => _allowReset; set {
+			_allowReset = value;
+			resetButton.interactable = value;
+		}
+	}
+	private bool _allowReset;
 
 	public void Playz()
 	{
@@ -27,8 +36,13 @@ public class Menu: MonoBehaviour
 
 	public void Back2Menu()
 	{
-		print("test");
 		levelMenu.SetActive(false);
 		mainMenu.SetActive(true);
+	}
+
+	public void ResetTimes()
+	{
+		print("test");
+		PlayerPrefs.DeleteAll();
 	}
 }

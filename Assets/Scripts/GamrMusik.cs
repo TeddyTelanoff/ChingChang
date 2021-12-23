@@ -42,4 +42,19 @@ public class GamrMusik : MonoBehaviour
 			}
 		};
 	}
+
+	void Update()
+	{
+		if (Screen.width / Screen.height != 16 / 9)
+		{
+			if (Screen.width < Screen.height)
+			{
+				Screen.SetResolution(Screen.width, Screen.width * 9 / 16, Screen.fullScreen);
+			}
+			else
+			{
+				Screen.SetResolution(Screen.height * 16 / 9, Screen.height, Screen.fullScreen);
+			}
+		}
+	}
 }
