@@ -115,7 +115,7 @@ public class Player: MonoBehaviour
 
 		UpdateDashBar();
 
-		if (!invulnerable && Input.GetKey(KeyCode.DownArrow))
+		if (Input.GetKey(KeyCode.DownArrow))
 			rb.AddForce(new Vector2(0, -fallScale), ForceMode2D.Impulse);
 
 		float dx = Input.GetAxisRaw("Horizontal") * speed;
@@ -151,6 +151,9 @@ public class Player: MonoBehaviour
 
 	IEnumerator DashInvulnerability()
 	{
+		if (invulnerable)
+			yield break;
+
 		rb.gravityScale = 0;
 		invulnerable = true;
 		GetComponent<Collider2D>().enabled = false;
