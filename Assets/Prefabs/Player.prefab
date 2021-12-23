@@ -146,12 +146,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 409963750077817831}
+  timer: {fileID: 0}
   baseSpeed: 1
   fallScale: 1.5
   startPos: {x: 0, y: 0, z: 0}
   startScale: {x: 0, y: 0, z: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
   speed: 0
+  defGravScale: 0
   star: {fileID: 0}
   dashBar:
     transform: {fileID: 0}
@@ -178,7 +180,7 @@ GameObject:
   - component: {fileID: 8508850427843995781}
   m_Layer: 30
   m_Name: dash safe
-  m_TagString: Untagged
+  m_TagString: Player Dash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

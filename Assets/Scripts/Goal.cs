@@ -12,5 +12,11 @@ public class Goal: MonoBehaviour
 			Time.timeScale = 0;
 			print("level completed");
 		}
+		if (hit.collider.tag == "Player Dash")
+		{
+			hit.collider.transform.parent.GetComponent<Player>().timer?.End();
+			Time.timeScale = 0;
+			print("level completed");
+		}
 	}
 }

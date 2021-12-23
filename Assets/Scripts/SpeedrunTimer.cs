@@ -31,6 +31,7 @@ public class SpeedrunTimer: MonoBehaviour
 	{
 		start = Time.time;
 		ended = false;
+		ui.color = Color.red;
 	}
 
 	public void End()
