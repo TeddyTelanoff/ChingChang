@@ -13,6 +13,8 @@ public class GamrMusik : MonoBehaviour
 	{
 		DontDestroyOnLoad(gameObject);
 		SceneManager.activeSceneChanged += (curr, next) => {
+			print($"sb: {sandbox.isPlaying}, tt: {tutorial.isPlaying}, gm: {gamer.isPlaying}");
+
 			if (next.buildIndex == 0)
 			{
 				sandbox.Stop();
@@ -23,7 +25,8 @@ public class GamrMusik : MonoBehaviour
 			if (next.buildIndex < 6)
 			{
 				sandbox.Stop();
-				tutorial.Play();
+				if (!tutorial.isPlaying)
+					tutorial.Play();
 				gamer.Stop();
 			}
 
@@ -31,12 +34,14 @@ public class GamrMusik : MonoBehaviour
 			{
 				sandbox.Stop();
 				tutorial.Stop();
-				gamer.Play();
+				if (!gamer.isPlaying)
+					gamer.Play();
 			}
 
 			if (next.buildIndex == 13)
 			{
-				sandbox.Play();
+				if (!sandbox.isPlaying)
+					sandbox.Play();
 				tutorial.Stop();
 				gamer.Stop();
 			}

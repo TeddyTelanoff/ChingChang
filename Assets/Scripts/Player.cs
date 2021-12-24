@@ -83,7 +83,7 @@ public class Player: MonoBehaviour
 		}
 
 		if (Input.GetKey(KeyCode.Escape))
-			SceneManager.LoadSceneAsync(0);
+			GotoMenu();
 
 		//if (invulnerable)
 		//	return;
@@ -154,13 +154,17 @@ public class Player: MonoBehaviour
 			for (int i = 0; i < 10; i++)
 			{
 				transform.localScale *= 1.1f;
-				var eulerAngs = transform.localRotation.eulerAngles;
-				transform.localRotation = Quaternion.Euler(eulerAngs.x, eulerAngs.y, eulerAngs.z + 6.9f);
+				transform.Rotate(0, 0, 6.9f);
 				GetComponentInChildren<SpriteRenderer>().color -= new Color(0, 0.04f, 0.04f, 0);
 				yield return new WaitForSecondsRealtime(0.05f);
 			}
 			Restart();
 		}
+	}
+
+	public void GotoMenu()
+	{
+		SceneManager.LoadSceneAsync(0);
 	}
 
 	public void Restart()
